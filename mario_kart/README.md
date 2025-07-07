@@ -1,5 +1,5 @@
 <h1>Desafio de projeto do Bootcamp da <a href="https://web.dio.me/" target="_blank"> DIO </a>: Mario Kart.JS</h1>
-<h2> Elaborado pelo Instrutor: <a href="https://github.com/felipeAguiarCode" target="_blank">Felipe Silva Aguiar</a>
+<h2> Elaborado pelo Instrutor: <a href="https://github.com/felipeAguiarCode" target="_blank">Felipe Silva Aguiar</a></h2>
 
   <table>
         <tr>
