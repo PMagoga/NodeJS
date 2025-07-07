@@ -1,0 +1,11 @@
+{
+  "name": "mario_kart",
+  "version": "1.0.0",
+  "description": "desafio projeto mario kart",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pablo Magoga",
+  "license": "ISC"
+}
