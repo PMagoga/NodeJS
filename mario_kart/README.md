@@ -1,4 +1,4 @@
-<h1>Desafio de projeto do Bootcamp <a href:"web.dio.me" target:"_blank">DIO</a>: Mario Kart.JS</h1>
+<h1>Desafio de projeto do Bootcamp <a href:"[web.dio.me](https://web.dio.me/)" target:"_blank">DIO</a>: Mario Kart.JS</h1>
 
   <table>
         <tr>
