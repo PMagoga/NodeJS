@@ -11,12 +11,20 @@ async function addItem(userCart, item) {
 }
 
 async function deleteItem(userCart, name) {
-  // lógica para remover um item do carrinho
-  console.log(`Item ${userCart} removido do carrinho.`);
+  // lógica para deletar um item do carrinho
+  const index = userCart.findIndex(item => item.name === name);
+  if (index !== -1) {
+    userCart.splice(index, 1);
+  }
+  console.log(`Item ${name} removido do carrinho.`);
 }
 
 async function removeItem(userCart, index) {
-  // lógica para remover um item do carrinho
+  // lógica para remover um item do carrinho - diminuir a quantidade
+  const deleteItem = index - 1;
+  if (index >= 0 && index < userCart.length) {
+    userCart.splice(deleteItem, 1);
+  }
   console.log(`Item ${userCart} removido do carrinho.`);
 }
 
@@ -26,4 +34,12 @@ async function calculateTotal(userCart) {
     console.log(`Total do carrinho: ${result}`);
 }
 
-export { addItem, deleteItem, removeItem, calculateTotal };
+// mostrar todos os itens do carrinho
+async function displayCart(userCart) {
+  console.log("Itens no carrinho:");
+  userCart.forEach((item, index) => {
+    console.log(`${index + 1}. ${item.name} - Preço: R$ ${item.price}, Quantidade: ${item.quantity}, Subtotal: ${item.subtotal}`);
+  });
+}
+
+export { addItem, deleteItem, removeItem, calculateTotal, displayCart };
