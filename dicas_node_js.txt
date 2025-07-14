@@ -20,6 +20,7 @@ npm run start // nesse caso no package.json está descrito assim
   "start": "node index.js"
 }
 
+<<<<<<< HEAD
 // instalando typescript/biblioteca para executar typescript e outra para converter typescript para javascript mais rápido
 npm i typescript tsx tsup -D //-D somente ambiente desenvolvimento
 
@@ -35,3 +36,22 @@ npx tsc --init
 	"strict": true,
 	"esModuleInterop": true
 }
+=======
+//após instalar dependências, não esquecer de adicionar o node modules no .gitignore
+
+//criando o tsconfig, para configurar o typescript
+npx tsc --init
+
+//configurando o tsconfig, algumas configurações básicas:
+{
+  "compilerOptions": {
+    "targe": "es6"                        ,
+    "module": "CommonJS",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true
+  }
+}
+
+
+>>>>>>> d4133e514e0633373b050c69a99fbd292300471c
