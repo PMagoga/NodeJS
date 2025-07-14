@@ -1,0 +1,26 @@
+// iniciando o projeto
+npm init
+
+// instalando pacotes
+npm install "nome_do_pacote"
+- Ele permite instalar pacotes específicos em um projeto, criando automaticamente a pasta node_modules com os arquivos necessários e atualizando o arquivo package.json.
+
+// instalar globalmente uma ferramentas utiliza a flag -g
+npm install -g typescript
+
+// instalar ferramentas em ambiente de desenvolvimento, use a flag - D
+npm install -D typescript
+
+// instalando typescript/biblioteca para executar typescript e outra para converter typescript para javascript mais rápido
+npm i typescript tsx tsup -D //-D somente ambiente desenvolvimento
+ 
+// Atualizando dependências com 
+npm update
+
+// Executando scripts com e npm run e o nome do script conforme definido no package.json
+npm run start // nesse caso no package.json está descrito assim
+"scripts": {
+  "start": "node index.js"
+}
+
+//após instalar dependências, não esquecer de adicionar o node modules no .gitignore
