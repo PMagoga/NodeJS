@@ -24,3 +24,6 @@ npm run start // nesse caso no package.json está descrito assim
 }
 
 //após instalar dependências, não esquecer de adicionar o node modules no .gitignore
+
+//criando o tsconfig, para configurar o typescript
+npx tsc --init
