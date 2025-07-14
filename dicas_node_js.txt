@@ -27,3 +27,16 @@ npm run start // nesse caso no package.json está descrito assim
 
 //criando o tsconfig, para configurar o typescript
 npx tsc --init
+
+//configurando o tsconfig, algumas configurações básicas:
+{
+  "compilerOptions": {
+    "targe": "es6"                        ,
+    "module": "CommonJS",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true
+  }
+}
+
+
