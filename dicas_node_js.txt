@@ -11,9 +11,6 @@ npm install -g typescript
 // instalar ferramentas em ambiente de desenvolvimento, use a flag - D
 npm install -D typescript
 
-// instalando typescript/biblioteca para executar typescript e outra para converter typescript para javascript mais rápido
-npm i typescript tsx tsup -D //-D somente ambiente desenvolvimento
- 
 // Atualizando dependências com 
 npm update
 
@@ -23,4 +20,18 @@ npm run start // nesse caso no package.json está descrito assim
   "start": "node index.js"
 }
 
+// instalando typescript/biblioteca para executar typescript e outra para converter typescript para javascript mais rápido
+npm i typescript tsx tsup -D //-D somente ambiente desenvolvimento
+
 //após instalar dependências, não esquecer de adicionar o node modules no .gitignore
+//criar o arquivo de configuração do typescript
+npx tsc --init
+
+// no arquivo tsconfig algumas configurações são interessantes
+"compileOptions": {
+	"target": "ES6",
+	"module": "CommonJS",
+	"outDir": "./dist",
+	"strict": true,
+	"esModuleInterop": true
+}
