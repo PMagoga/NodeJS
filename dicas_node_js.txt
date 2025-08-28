@@ -1,6 +1,3 @@
-// iniciando o projeto
-npm init
-
 // instalando pacotes
 npm install "nome_do_pacote"
 - Ele permite instalar pacotes específicos em um projeto, criando automaticamente a pasta node_modules com os arquivos necessários e atualizando o arquivo package.json.
@@ -14,13 +11,11 @@ npm install -D typescript
 // Atualizando dependências com 
 npm update
 
-// Executando scripts com e npm run e o nome do script conforme definido no package.json
-npm run start // nesse caso no package.json está descrito assim
-"scripts": {
-  "start": "node index.js"
-}
 
-<<<<<<< HEAD
+
+// INICIANDO UM PROJETO
+npm init
+
 // instalando typescript/biblioteca para executar typescript e outra para converter typescript para javascript mais rápido
 npm i typescript tsx tsup -D //-D somente ambiente desenvolvimento
 
@@ -36,22 +31,17 @@ npx tsc --init
 	"strict": true,
 	"esModuleInterop": true
 }
-=======
-//após instalar dependências, não esquecer de adicionar o node modules no .gitignore
 
-//criando o tsconfig, para configurar o typescript
-npx tsc --init
 
-//configurando o tsconfig, algumas configurações básicas:
-{
-  "compilerOptions": {
-    "targe": "es6"                        ,
-    "module": "CommonJS",
-    "outDir": "./dist",
-    "strict": true,
-    "esModuleInterop": true
-  }
+// Executando scripts com e npm run e o nome do script conforme definido no package.json
+npm run start // nesse caso no package.json está descrito assim
+"scripts": {
+  "start": "node index.js"
 }
 
+// alguns scripts úteis:
+"dist": "tsup src" // converter os arquivos typescript que estão na pasta src
+"start:dev": "tsx src/server" // para subir o servidor que está na pasta src/server.ts
+"start:watch": "tsx watch src/server" // para subir o servidor que está na pasta src/server.ts sempre que alguma alteração for feita na aplicação
+"start:dist": "npm run dist && node dist/src/index.js" // roda o scrip "dist" e depois o node roda o index.js
 
->>>>>>> d4133e514e0633373b050c69a99fbd292300471c
