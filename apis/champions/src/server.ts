@@ -1,9 +1,10 @@
-import express, { Request, Response } from "express";
+import express, { json, Request, Response } from "express";
+import createApp from "./app";
 
-const app = express();
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello, World!');
+const app = createApp();
+const port = process.env.PORT;
+
+app.listen(port, () => {
+  console.log(`🔥 Server is running at http://localhost:${port}`);
 });
-
-app.listen(3000);
