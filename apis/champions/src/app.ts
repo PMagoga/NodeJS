@@ -1,5 +1,5 @@
-import express, {Request, Response} from "express";
-import { getPlayer } from "./controllers/player-controllers";
+import express from "express";
+import router from "./routes";
 
 
 function createApp() {
@@ -7,7 +7,7 @@ function createApp() {
     
     app.use(express.json());
     
-    app.get('/', getPlayer);
+    app.use('/api', router);
 
     return app;
 }
