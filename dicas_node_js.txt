@@ -45,3 +45,6 @@ npm run start // nesse caso no package.json está descrito assim
 "start:watch": "tsx watch src/server" // para subir o servidor que está na pasta src/server.ts sempre que alguma alteração for feita na aplicação
 "start:dist": "npm run dist && node dist/src/index.js" // roda o scrip "dist" e depois o node roda o index.js
 
+
+// é importante também criar o arquivo .env para as variáveis de ambiente
+
