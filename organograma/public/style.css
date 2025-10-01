@@ -1,0 +1,95 @@
+body {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+h1 {
+  background: #004080;
+  color: white;
+  padding: 10px;
+  margin: 0 0 20px;
+  width: 100%;
+}
+
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  /* justify-content: center; */
+  width: fit-content;
+  flex: auto;
+}
+
+.secao {
+  width: 120px;
+  min-height: 50px;
+  height: fit-content;
+  background: #fdfdfd;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  cursor: grabs
+}
+
+.secao:active {
+  cursor: grabbing;
+}
+
+.secao h2 {
+  background: #ddd;
+  margin: 0;
+  padding: 8px;
+}
+
+.lista {
+  flex: 1;
+  padding: 5px;
+  min-height: 50px;
+}
+
+.cmt {
+    background: #fff;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5px auto;
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.2);
+}
+
+.cmt h3 {
+    margin: 0;
+    font-size: 14px;
+}
+.pessoa {
+  background: #fff;
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,.2);
+  cursor: grab;
+  text-align: left;
+}
+
+#container {
+  display: flex;
+  flex-wrap: nowrap; /* agora não quebra linha */
+  overflow-x: auto;  /* scroll horizontal */
+  gap: 20px;
+  padding: 10px;
+}
+
+.lista.dragover {
+  background: #e6f7ff;
+  border: 2px dashed #3399ff;
+}
