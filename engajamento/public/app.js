@@ -15,7 +15,13 @@ async function fetchData(){
 function makeCard(item){
   const div = document.createElement('div');
   div.className = 'card';
-
+  if (item.statusColor) {
+  div.style.backgroundColor = 
+    item.statusColor === 'verde' ? 'lightgreen' :
+    item.statusColor === 'amarelo' ? 'khaki' :
+    item.statusColor === 'vermelho' ? 'lightcoral' :
+    'white';
+  }
   const img = document.createElement('img');
   img.src = item.photo || 'https://via.placeholder.com/120';
   div.appendChild(img);
@@ -76,8 +82,41 @@ function makeCard(item){
     load();
   };
 
+  // seletor de cor
+  const STATUS_MAP = {
+    'default': 'Limpar',
+    'verde': 'Engajar',
+    'amarelo': 'Talvez',
+    'vermelho': 'Não Engajar'
+  };
+
+  const select = document.createElement('select');
+  Object.keys(STATUS_MAP).forEach(color => {
+    const option = document.createElement('option');
+    option.value = color;
+    option.textContent = STATUS_MAP[color];
+    if (item.statusColor === color) option.selected = true;
+    select.appendChild(option);
+  });
+
+  // atualiza no servidor
+  select.onchange = async () => {
+
+    const newColor = select.value;
+    const formdata = new FormData();
+    formdata.append('statusColor', newColor);
+    await fetch(API_BASE + '/' + item.id, { method: 'PUT', body: formdata });
+    // atualiza a cor visual do card
+    div.style.backgroundColor = 
+      newColor === 'default' ? 'white' :
+      newColor === 'verde' ? '#4ee346ff' :
+      newColor === 'amarelo' ? '#f0e76aff' :
+      newColor === 'vermelho' ? '#e83c4dff' : 'white';
+  };
+
   actions.appendChild(btnEdit);
   actions.appendChild(btnDel);
+  tblWrap.appendChild(select);
   tblWrap.appendChild(actions);
 
   div.appendChild(tblWrap);

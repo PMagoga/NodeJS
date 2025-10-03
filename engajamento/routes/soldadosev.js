@@ -36,7 +36,8 @@ router.post('/', upload.single('photo'), async (req, res) => {
       meetingOpinion: body.meetingOpinion || '',
       notes: body.notes || '',
       punishments: body.punishments || '',
-      photo: req.file ? `/uploads/${req.file.filename}` : (body.photo || '')
+      photo: req.file ? `/uploads/${req.file.filename}` : (body.photo || ''),
+      statusColor: body.statusColor || 'default'
     };
 
     data.push(newItem);
@@ -48,7 +49,7 @@ router.post('/', upload.single('photo'), async (req, res) => {
 });
 
 // Atualizar existente (simples)
-router.put('/api/sdev/:id', upload.single('photo'), async (req, res) => {
+router.put('/:id', upload.single('photo'), async (req, res) => {
   try {
     const id = Number(req.params.id);
     const body = req.body || {};
@@ -68,7 +69,8 @@ router.put('/api/sdev/:id', upload.single('photo'), async (req, res) => {
       meetingOpinion: body.meetingOpinion || data[idx].meetingOpinion,
       notes: body.notes || data[idx].notes,
       punishments: body.punishments || data[idx].punishments,
-      photo: req.file ? `/uploads/${req.file.filename}` : (body.photo || data[idx].photo)
+      photo: req.file ? `/uploads/${req.file.filename}` : (body.photo || data[idx].photo),
+      statusColor: body.statusColor || data[idx].statusColor || 'default'
     });
 
     data[idx] = updated;
@@ -80,8 +82,35 @@ router.put('/api/sdev/:id', upload.single('photo'), async (req, res) => {
   }
 });
 
+// PUT para atualizar a cor do status
+router.put('/status/:id', async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+    const { statusColor } = req.body; // Pega apenas o statusColor
+    
+    const raw = await fs.readFile(DATA_FILE, 'utf8').catch(() => '[]');
+    const data = JSON.parse(raw || '[]');
+
+    const idx = data.findIndex(d => d.id === id);
+    
+    if (idx === -1) return res.status(404).json({ error: 'Não encontrado' });
+
+    // Atualiza apenas a cor
+    const updated = Object.assign({}, data[idx], {
+      statusColor: statusColor || data[idx].statusColor || 'default'
+    });
+
+    data[idx] = updated;
+    await fs.writeFile(DATA_FILE, JSON.stringify(data, null, 2), 'utf8');
+    res.json(updated);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Erro ao atualizar status' });
+  }
+});
+
 // Deletar
-router.delete('/api/sdev/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const id = Number(req.params.id);
     const raw = await fs.readFile(DATA_FILE, 'utf8').catch(() => '[]');

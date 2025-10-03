@@ -10,12 +10,13 @@
     "meetingOpinion": "Concordou",
     "notes": "Nenhuma",
     "punishments": "-",
-    "photo": "https://via.placeholder.com/120"
+    "photo": "https://via.placeholder.com/120",
+    "statusColor": "verde"
   },
   {
-    "id": 1759519769917,
-    "number": "702",
-    "name": "KRAINSKI",
+    "id": 1759524785586,
+    "number": "703",
+    "name": "José",
     "qualification": "-",
     "section": "-",
     "engage": "-",
@@ -23,6 +24,35 @@
     "meetingOpinion": "-",
     "notes": "-",
     "punishments": "-",
-    "photo": ""
+    "photo": "",
+    "statusColor": "vermelho"
+  },
+  {
+    "id": 1759524812279,
+    "number": "704",
+    "name": "Pedro",
+    "qualification": "-",
+    "section": "-",
+    "engage": "-",
+    "dependent": "-",
+    "meetingOpinion": "-",
+    "notes": "-",
+    "punishments": "-",
+    "photo": "",
+    "statusColor": "verde"
+  },
+  {
+    "id": 1759524839590,
+    "number": "705",
+    "name": "Amancio",
+    "qualification": "-",
+    "section": "-",
+    "engage": "-",
+    "dependent": "-",
+    "meetingOpinion": "-",
+    "notes": "-",
+    "punishments": "-",
+    "photo": "",
+    "statusColor": "verde"
   }
 ]

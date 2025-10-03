@@ -11,11 +11,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // importa as rotas
 const employeesRoutes = require('./routes/soldadosev');
-//const cbsdRoutes = require('./routes/cbsdep');
+const cbsdRoutes = require('./routes/cbsdep');
 
 // usa as rotas
 app.use('/api/sdev', employeesRoutes);
-//app.use('/api/cbsd', cbsdRoutes);
+app.use('/api/cbsd', cbsdRoutes);
 
 // páginas
 app.get('/cbsd', (req, res) => {
