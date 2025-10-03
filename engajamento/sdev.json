@@ -6,10 +6,23 @@
     "qualification": "Mestre",
     "section": "Admin",
     "engage": "Sim",
-    "dependent": "Jo\u00e3o (filho)",
+    "dependent": "João (filho)",
     "meetingOpinion": "Concordou",
     "notes": "Nenhuma",
     "punishments": "-",
     "photo": "https://via.placeholder.com/120"
+  },
+  {
+    "id": 1759519769917,
+    "number": "702",
+    "name": "KRAINSKI",
+    "qualification": "-",
+    "section": "-",
+    "engage": "-",
+    "dependent": "-",
+    "meetingOpinion": "-",
+    "notes": "-",
+    "punishments": "-",
+    "photo": ""
   }
 ]

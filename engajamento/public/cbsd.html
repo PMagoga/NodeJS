@@ -4,8 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cb Sd EP</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Cabos e Soldados EP</h1>
+  <header>
+    <nav>
+      <ul>        
+        <li><a href="http://localhost:3600/">Início</a></li>
+        <li><button id="btnAdd">Adicionar militar</button></li>
+      </ul>      
+    </nav>
+  </header>
+
+  <h1>Engajamento Reengajamento Cabos e Soldados EP</h1>
+
+  <main>
+    <section id="cardsContainer" class="grid-4"></section>
+  </main>
+
+  <!-- modal simples -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Adicionar / Editar</h2>
+      <form id="form">
+        <input type="hidden" name="id" />
+        <label>Número<input name="number" required /></label>
+        <label>Nome<input name="name" required /></label>
+        <label>Qualificação<input name="qualification" /></label>
+        <label>Seção<input name="section" /></label>
+        <label>Deseja engajar<input name="engage" /></label>
+        <label>Dependente<input name="dependent" /></label>
+        <label>Parecer da reunião<input name="meetingOpinion" /></label>
+        <label>Observações<input name="notes" /></label>
+        <label>Punições<input name="punishments" /></label>
+        <label>Foto<input type="file" name="photo" accept="image/*" /></label>
+        <div class="actions">
+          <button type="submit">Salvar</button>
+          <button type="button" id="btnCancel">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>

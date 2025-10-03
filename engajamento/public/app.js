@@ -4,10 +4,12 @@ const modal = document.getElementById('modal');
 const form = document.getElementById('form');
 const btnCancel = document.getElementById('btnCancel');
 
+// Descobre qual API usar
+const API_BASE = window.location.pathname.startsWith('/cbsd') ? '/api/cbsd' : '/api/sdev';
+
 async function fetchData(){
-  const resp = await fetch('/api/employees');
-  const data = await resp.json();
-  return data;
+  const resp = await fetch(API_BASE);
+  return await resp.json();
 }
 
 function makeCard(item){
@@ -61,14 +63,16 @@ function makeCard(item){
 
   const actions = document.createElement('div');
   actions.className = 'row-actions';
+
   const btnEdit = document.createElement('button');
   btnEdit.textContent = 'Editar';
   btnEdit.onclick = () => openModal(item);
+
   const btnDel = document.createElement('button');
   btnDel.textContent = 'Excluir';
   btnDel.onclick = async () => {
     if (!confirm('Confirma exclusão?')) return;
-    await fetch('/api/employees/' + item.id, { method: 'DELETE' });
+    await fetch(API_BASE + '/' + item.id, { method: 'DELETE' });
     load();
   };
 
@@ -113,10 +117,9 @@ form.addEventListener('submit', async (e) => {
   const formData = new FormData(form);
   const id = form.id.value;
   if (id) {
-    // atualizar
-    await fetch('/api/employees/' + id, { method: 'PUT', body: formData });
+    await fetch(API_BASE + '/' + id, { method: 'PUT', body: formData });
   } else {
-    await fetch('/api/employees', { method: 'POST', body: formData });
+    await fetch(API_BASE, { method: 'POST', body: formData });
   }
   modal.classList.add('hidden');
   load();
