@@ -7,6 +7,7 @@ const btnCancel = document.getElementById('btnCancel');
 // Descobre qual API usar
 const API_BASE = window.location.pathname.startsWith('/cbsd') ? '/api/cbsd' : '/api/sdev';
 
+// buscar dados
 async function fetchData(){
   const resp = await fetch(API_BASE);
   return await resp.json();
@@ -90,7 +91,9 @@ function makeCard(item){
     'vermelho': 'Não Engajar'
   };
 
+  // criar select  
   const select = document.createElement('select');
+  // usar a cor atual laçoo através do objeto
   Object.keys(STATUS_MAP).forEach(color => {
     const option = document.createElement('option');
     option.value = color;
@@ -123,6 +126,7 @@ function makeCard(item){
   return div;
 }
 
+// carregar dados
 async function load(){
   container.innerHTML = '';
   const data = await fetchData();
