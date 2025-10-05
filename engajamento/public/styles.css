@@ -32,6 +32,7 @@ nav {
 h1 {
     text-align: center;
     color: #333333;
+    margin: 5px 0;
 }
 
 ul {
@@ -40,6 +41,34 @@ ul {
   padding: 0;
   overflow: hidden;
   background-color: #333333;
+}
+
+#titulo {
+  color: black;
+  text-align: center;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+}
+
+.filtro {
+  margin: 5px 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.btnExport {
+  margin: 5px 15px;
+  display: flex;
+  gap: 10px;
+}
+
+#btnExportExcel:hover,
+#btnExportPDF:hover {
+  background-color: #81de84;
 }
 
 ul li {

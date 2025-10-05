@@ -3,6 +3,11 @@ const btnAdd = document.getElementById('btnAdd');
 const modal = document.getElementById('modal');
 const form = document.getElementById('form');
 const btnCancel = document.getElementById('btnCancel');
+const filterColor = document.getElementById('filterColor');
+const btnExportExcel = document.getElementById('btnExportExcel');
+const btnExportPDF = document.getElementById('btnExportPDF');
+
+let allData = [];
 
 // Descobre qual API usar
 const API_BASE = window.location.pathname.startsWith('/cbsd') ? '/api/cbsd' : '/api/sdev';
@@ -126,12 +131,19 @@ function makeCard(item){
   return div;
 }
 
-// carregar dados
-async function load(){
+// filtrar cards
+async function load() {
   container.innerHTML = '';
   const data = await fetchData();
+  allData = data;
+  renderCards(data);
+}
+
+function renderCards(data) {
+  container.innerHTML = '';
   data.forEach(item => container.appendChild(makeCard(item)));
 }
+
 
 function openModal(item){
   modal.classList.remove('hidden');
@@ -155,6 +167,73 @@ function openModal(item){
 btnAdd.addEventListener('click', () => openModal());
 btnCancel.addEventListener('click', () => modal.classList.add('hidden'));
 
+// ======== EXPORTAR PARA EXCEL =========
+function exportToExcel() {
+  const selected = filterColor ? filterColor.value : 'todos';
+  const filtered = selected === 'todos'
+    ? allData
+    : allData.filter(item => item.statusColor === selected);
+
+  let csv = "Número,Nome,Qualificação,Seção,Engajamento,Dependente,Parecer,Observações,Punições,Status\n";
+  filtered.forEach(item => {
+    csv += [
+      item.number,
+      item.name,
+      item.qualification,
+      item.section,
+      item.engage,
+      item.dependent,
+      item.meetingOpinion,
+      item.notes,
+      item.punishments,
+      item.statusColor || ''
+    ].map(v => `"${v || ''}"`).join(",") + "\n";
+  });
+
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "militares.csv";
+  link.click();
+}
+
+// ======== EXPORTAR PARA PDF =========
+async function exportToPDF() {
+  const selected = filterColor ? filterColor.value : 'todos';
+  const filtered = selected === 'todos'
+    ? allData
+    : allData.filter(item => item.statusColor === selected);
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  doc.setFontSize(14);
+  doc.text("Relatório de Militares", 10, 15);
+  if (selected !== 'todos') doc.text(`Filtro: ${selected}`, 10, 25);
+
+  let y = 35;
+  filtered.forEach((item, idx) => {
+    doc.setFontSize(10);
+    doc.text(`${idx + 1}. ${item.name} (${item.number}) - ${item.statusColor || '-'}`, 10, y);
+    y += 6;
+    doc.text(`  Seção: ${item.section || '-'} | Engajamento: ${item.engage || '-'}`, 10, y);
+    y += 6;
+    doc.text(`  Dependente: ${item.dependent || '-'} | Parecer: ${item.meetingOpinion || '-'}`, 10, y);
+    y += 10;
+
+    if (y > 270) {
+      doc.addPage();
+      y = 20;
+    }
+  });
+
+  doc.save("militares.pdf");
+}
+
+// eventos para exportar pdf e excel
+btnExportPDF.addEventListener('click', exportToPDF);
+btnExportExcel.addEventListener('click', exportToExcel);
+
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData(form);
@@ -166,6 +245,16 @@ form.addEventListener('submit', async (e) => {
   }
   modal.classList.add('hidden');
   load();
+});
+
+filterColor.addEventListener('change', () => {
+  const selected = filterColor.value;
+  if (selected === 'todos') {
+    renderCards(allData);
+  } else {
+    const filtered = allData.filter(item => item.statusColor === selected);
+    renderCards(filtered);
+  }
 });
 
 // carregar inicial
