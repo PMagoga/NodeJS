@@ -1,0 +1,11 @@
+Dicas Typescript
+// criar o tsconfig.json
+npx tsc --init
+
+// habilitar o node ler arquivos typescript
+npm i tsx -D
+
+//lib para buildar projetos em typescript
+npm i tsup   ==> criar um outro script "build": "tsup src"
+depois rodar npm run build
+
